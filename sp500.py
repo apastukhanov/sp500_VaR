@@ -21,14 +21,14 @@ def download_sp500() -> None:
     sp500.to_csv("data/sp500list.csv", sep=";")
     print("Cписок компаний из индекса SP500 загружен из Wikipedia!")
     if not sp500.empty:
-        prettify_stock_list(sp500)
+        prettify_stock_list(sp500, path)
 
 
-def prettify_stock_list(df):
+def prettify_stock_list(df, path):
     df = df[["Symbol", "Security"]].copy()
     df.rename({"Security": "name"}, axis=1, inplace=True)
     fltr = ~df["Symbol"].isin(["BF.B", "GEV", "SOLV", "BRK.B"])
-    df.loc[fltr].to_csv("data/SP500_list_bloom.txt", sep="\t", index=False)
+    df.loc[fltr].to_csv(path, sep="\t", index=False)
     print("Cписок компаний из индекса SP500 подготовлен для обработки")
 
 
