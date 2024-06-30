@@ -13,7 +13,7 @@ URL = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 
 def download_sp500() -> None:
     path = Path("data/SP500_list_bloom.txt")
-    if path.exists:
+    if path.exists():
         ans = input("Загрузить список компаний из индекса SP500? [Y/n]: ")
         if ans.lower() != "y":
             return
